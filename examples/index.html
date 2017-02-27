@@ -11,16 +11,16 @@
     var IFCday  = new IFCDate();
     var IFCday2 = new IFCDate();
 
-    IFCday2.setMonthsList('esperanto_sequential');
-    IFCday2.setDaysList('iso-8601');
+    IFCday2.setMonthsList('chinese_t');
+    IFCday2.setDaysList('sol_chinese');
 
-    document.write('<b>IFC (Cotsworth) Date:</b> ', IFCday.toDateString(), '<br/><b>to Gregorian Date:</b> ', IFCday.toGregorianDateString());
+    document.write('<b>Sol Date:</b> ', IFCday.toDateString(), '<br/><b>to Gregorian Date:</b> ', IFCday.toGregorianDateString());
     document.write('<br/><br/>');
     document.write('<b>Gregorian Date:</b> ', today.toDateString(), '<br/><b>to IFC (Cotsworth) Date:</b> ', new IFCDate(today).toDateString());
     document.write('<br/><br/>');
-    document.write('<b>IFC (Esperanto Sequential) Date:</b> ', IFCday2.toDateString(), '<br/><b>to Gregorian Date:</b> ', IFCday2.toGregorianDateString());
+    document.write('<b>Sol (Chinese Traditional) Date:</b> ', IFCday2.toDateString(), '<br/><b>to Gregorian Date:</b> ', IFCday2.toGregorianDateString());
     document.write('<br/><br/>');
-    document.write('<b>IFC (Cotsworth) Date &amp; Time:</b> ', IFCday.toString(), '<br/><b>to Gregorian Date:</b> ', IFCday.toGregorianDateString() + ' ' + IFCday.toTimeString());
+    document.write('<b>Sol Date &amp; Time:</b> ', IFCday.toString(), '<br/><b>to Gregorian Date:</b> ', IFCday.toGregorianDateString() + ' ' + IFCday.toTimeString());
 </script>
 </body>
 </html>

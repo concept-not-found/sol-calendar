@@ -53,9 +53,9 @@
     }
 
     date.__proto__ = IFCDate.prototype;
-    date.setMonthsList('cotsworth');
-    date.setDaysList('cotsworth');
-    date.setLeapDay('cotsworth');
+    date.setMonthsList('sol');
+    date.setDaysList('sol');
+    date.setLeapDay('sol');
 
     return date;
   }
@@ -73,7 +73,7 @@
   IFCDate.prototype.setLeapDay = function (value) {
     var presets = {
       pancronometer: 366,
-      cotsworth    : 169,
+      sol    : 169,
       gregorian    : 57
     };
 
@@ -81,7 +81,7 @@
       switch (value) {
         case 'pancronometer':
         // FALLTHROUGH
-        case 'cotsworth':
+        case 'sol':
         // FALLTHROUGH
         case 'gregorian':
           this.__leapDay = presets[value.toLowerCase()];
@@ -114,7 +114,8 @@
 
   IFCDate.prototype.setDaysList = function (value) {
     var presets = {
-      cotsworth : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Dies Anno (Year Day)', 'Dies Intercalaris (Leap Day)'],
+      sol : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Dies Anno (Year Day)', 'Dies Intercalaris (Leap Day)'],
+      sol_chinese: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日', '除夕', '闰日'],
       'iso-8601': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Dies Anno (Year Day)', 'Dies Intercalaris (Leap Day)']
     };
 
@@ -146,10 +147,12 @@
 
   IFCDate.prototype.setMonthsList = function (value) {
     var presets = {
-      cotsworth           : ["January", "February", "March", "April", "May", "June", "Sol", "July", "August", "September", "October", "November", "December"],
-      latin_sequential    : ["Primo", "Secundo", "Tertio", "Quarto", "Quinto", "Sexto", "Septimo", "Octavo", "Nano", "Decimo", "Undecimo", "Duodecimo", "Decimotertio"],
-      esperanto           : ["Januaro", "Februaro", "Marto", "Aprilo", "Majo", "Junio", "Sol", "Julio", "Aŭgusto", "Septembro", "Oktobro", "Novembro", "Decembro"],
-      esperanto_sequential: ["Unua", "Dua", "Tria", "Kvara", "Kvina", "Sesa", "Sepa", "Oka", "Naŭa", "Deka", "Dekunua", "Dekdua", "Dektria"]
+      sol           : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Sol" ],
+      latin_sequential    : ["Primo", "Secundo", "Tertio", "Quarto", "Quinto", "Septimo", "Octavo", "Nano", "Decimo", "Undecimo", "Duodecimo", "Decimotertio", "Sexto"],
+      esperanto           : ["Januaro", "Februaro", "Marto", "Aprilo", "Majo", "Junio", "Julio", "Aŭgusto", "Septembro", "Oktobro", "Novembro", "Decembro", "Sol" ],
+      esperanto_sequential: ["Unua", "Dua", "Tria", "Kvara", "Kvina", "Sepa", "Oka", "Naŭa", "Deka", "Dekunua", "Dekdua", "Dektria", "Sesa" ],
+      chinese_s : ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月","11月","12月", "太阳月"],
+      chinese_t : ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "太陽月"]
     };
 
     try {
@@ -285,7 +288,11 @@
     var IFCDate          = this.getDate(dayOfYear, IFCNormalizedDay);
     var IFCDay           = this.getDay(dayOfYear, IFCNormalizedDay);
 
-    return days[IFCDay] + ', ' + IFCDate + ' ' + months[IFCMonth] + ' ' + year;
+    if ( months[IFCMonth].indexOf('月') >= 0 ) {
+      return days[IFCDay] + ', ' + year + '年' + months[IFCMonth] + IFCDate + '日';
+    } else {
+      return days[IFCDay] + ', ' + IFCDate + ' ' + months[IFCMonth] + ' ' + year;
+    }
   };
 
   IFCDate.prototype.toString = function () {
