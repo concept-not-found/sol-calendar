@@ -195,7 +195,7 @@
       document.write('<br/><br/>');
       document.write('<b>Gregorian Date:</b> ', today.toDateString(), '<br/><b>to Sol Date:</b> ', new IFCDate(today).toDateString());
       document.write('<br/><br/>');
-      document.write('<b>Sol (Chinese Traditional) Date:</b> ', solDay2.toDateString('YYYYMMDD-CN'), '<br/><b>to Gregorian Date:</b> ', solDay2.toGregorianDateString());
+      document.write('<b>太陽曆:</b> ', solDay2.toDateString('YYYYMMDD-CN'), '<br/><b>公曆:</b> ', solDay2.toGregorianDateString());
       document.write('<br/><br/>');
       document.write('<b>Sol Date &amp; Time:</b> ', solDay.toString(), '<br/><b>to Gregorian Date:</b> ', solDay.toGregorianDateString() + ' ' + solDay.toTimeString());
 
