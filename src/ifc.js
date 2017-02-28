@@ -278,7 +278,7 @@
       : dayOfYear;
   };
 
-  IFCDate.prototype.toDateString = function () {
+  IFCDate.prototype.toDateString = function ( format ) {
     var days             = this.getDaysList();
     var months           = this.getMonthsList();
     var year             = this.getFullYear();
@@ -287,12 +287,33 @@
     var IFCMonth         = this.getMonth(dayOfYear, IFCNormalizedDay);
     var IFCDate          = this.getDate(dayOfYear, IFCNormalizedDay);
     var IFCDay           = this.getDay(dayOfYear, IFCNormalizedDay);
+    var theDateString = '';
 
-    if ( months[IFCMonth].indexOf('月') >= 0 ) {
-      return days[IFCDay] + ', ' + year + '年' + months[IFCMonth] + IFCDate + '日';
-    } else {
-      return days[IFCDay] + ', ' + IFCDate + ' ' + months[IFCMonth] + ' ' + year;
+    try {
+      switch (format) {
+        case 'D' :
+          theDateString = IFCDate;
+        break;
+        case 'MMMM' :
+          theDateString = months[IFCMonth];
+        break;
+        case 'YYYYMMDD-CN' :
+          theDateString = days[IFCDay] + ', ' + year + '年' + months[IFCMonth] + IFCDate + '日';
+        break;
+        default:
+          theDateString = days[IFCDay] + ', ' + IFCDate + ' ' + months[IFCMonth] + ' ' + year;
+        break;
+      }
+    } catch (e) {
+
     }
+    if ( format !== 'MMMM' && months[IFCMonth].indexOf('月') >= 0 ) {
+
+    } else {
+
+    }
+
+    return theDateString;
   };
 
   IFCDate.prototype.toString = function () {

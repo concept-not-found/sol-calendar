@@ -3,24 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <title>IFC library test</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
     <script src="../src/ifc.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .calendar ul {
+        list-style-type: none;
+      }
+
+      .year {
+        text-align: center;
+        font-size: 28px;
+      }
+      /* Month header */
+      .month {
+          padding: 25px 25px;
+          background: #1abc9c;
+      }
+
+      /* Month list */
+      .month ul {
+          margin: 0;
+          padding: 0;
+      }
+
+      .month ul li {
+          color: white;
+          font-size: 20px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+      }
+
+      /* Previous button inside month header */
+      .month .prev {
+          float: left;
+          padding-top: 10px;
+      }
+
+      /* Next button */
+      .month .next {
+          float: right;
+          padding-top: 10px;
+      }
+
+      /* Weekdays (Mon-Sun) */
+      .weekdays {
+          margin: 0;
+          padding: 10px 0;
+          background-color:#ddd;
+      }
+
+      .weekdays li {
+          display: inline-block;
+          width: 13.6%;
+          color: #666;
+          text-align: center;
+      }
+
+      /* Days (1-31) */
+      .days {
+          padding: 10px 0;
+          background: #eee;
+          margin: 0;
+      }
+
+      .days li {
+          list-style-type: none;
+          display: inline-block;
+          width: 13.6%;
+          text-align: center;
+          margin-bottom: 5px;
+          font-size:12px;
+          color:#777;
+      }
+
+      /* Highlight the "current" day */
+      .days li .active {
+        padding: 5px;
+        background: #1abc9c;
+        color: white !important
+      }
+
+      .g-day {
+        text-align: center;
+        padding: 25px;
+      }
+    </style>
 </head>
 <body>
-<script type="text/javascript">
-    var today   = new Date();
-    var IFCday  = new IFCDate();
-    var IFCday2 = new IFCDate();
 
-    IFCday2.setMonthsList('chinese_t');
-    IFCday2.setDaysList('sol_chinese');
+  <script type="text/javascript">
+      var today   = new Date();
+      var solDay  = new IFCDate();
+      var solDay2 = new IFCDate();
 
-    document.write('<b>Sol Date:</b> ', IFCday.toDateString(), '<br/><b>to Gregorian Date:</b> ', IFCday.toGregorianDateString());
-    document.write('<br/><br/>');
-    document.write('<b>Gregorian Date:</b> ', today.toDateString(), '<br/><b>to IFC (Cotsworth) Date:</b> ', new IFCDate(today).toDateString());
-    document.write('<br/><br/>');
-    document.write('<b>Sol (Chinese Traditional) Date:</b> ', IFCday2.toDateString(), '<br/><b>to Gregorian Date:</b> ', IFCday2.toGregorianDateString());
-    document.write('<br/><br/>');
-    document.write('<b>Sol Date &amp; Time:</b> ', IFCday.toString(), '<br/><b>to Gregorian Date:</b> ', IFCday.toGregorianDateString() + ' ' + IFCday.toTimeString());
-</script>
+      solDay2.setMonthsList('chinese_t');
+      solDay2.setDaysList('sol_chinese');
+
+      var solMonth = solDay.toDateString('MMMM');
+      var solDate = solDay.toDateString('D');
+  </script>
+    
+  <h2>SOL CALENDAR - Today</h2>
+
+  <div class="calendar">
+    <div class="year">
+      <script>document.write( today.getFullYear() );</script>
+    </div>
+    <div class="month">
+      <ul>
+        <li>
+          <script>document.write(solMonth);</script><br>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="weekdays">
+      <li>Mo</li>
+      <li>Tu</li>
+      <li>We</li>
+      <li>Th</li>
+      <li>Fr</li>
+      <li>Sa</li>
+      <li>Su</li>
+    </ul>
+
+    <ul class="days">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+      <li>15</li>
+      <li>16</li>
+      <li>17</li>
+      <li>18</li>
+      <li>19</li>
+      <li>20</li>
+      <li>21</li>
+      <li>22</li>
+      <li>23</li>
+      <li>24</li>
+      <li>25</li>
+      <li>26</li>
+      <li>27</li>
+      <li>28</li>
+    </ul>
+  </div>
+
+
+
+  <div class="g-day">
+    Today is <script>document.write( today.toDateString() ); </script> on Gregorian Calendar.
+  </div>
+
+    <br/><br/><br/>
+
+  <script type="text/javascript">
+      document.write('<b>Sol Date:</b> ', solDay.toDateString(), '<br/><b>to Gregorian Date:</b> ', solDay.toGregorianDateString());
+      document.write('<br/><br/>');
+      document.write('<b>Gregorian Date:</b> ', today.toDateString(), '<br/><b>to Sol Date:</b> ', new IFCDate(today).toDateString());
+      document.write('<br/><br/>');
+      document.write('<b>Sol (Chinese Traditional) Date:</b> ', solDay2.toDateString('YYYYMMDD-CN'), '<br/><b>to Gregorian Date:</b> ', solDay2.toGregorianDateString());
+      document.write('<br/><br/>');
+      document.write('<b>Sol Date &amp; Time:</b> ', solDay.toString(), '<br/><b>to Gregorian Date:</b> ', solDay.toGregorianDateString() + ' ' + solDay.toTimeString());
+
+      jQuery(document).ready( function ($) {
+        $('.days li:eq(' + solDate + ')').html(
+          '<span class="active">' + solDate + '</span>'
+        );
+      });
+  </script>
+</div>
+
 </body>
 </html>
