@@ -12,6 +12,11 @@
         font-family: sans-serif;
       }
 
+      .calendar {
+        display: block;
+        width: 400px;
+        margin: 0 auto;
+      }
       .calendar ul {
         list-style-type: none;
       }
@@ -22,64 +27,75 @@
       }
       /* Month header */
       .month {
-          padding: 25px 25px;
-          background: #1abc9c;
+        text-align: center;
+        padding: 6px 10px;
+        background: #1abc9c;
       }
 
       /* Month list */
       .month ul {
-          margin: 0;
-          padding: 0;
+        margin: 0;
+        padding: 0;
       }
 
       .month ul li {
-          color: white;
-          font-size: 20px;
-          text-transform: uppercase;
-          letter-spacing: 3px;
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
       }
 
       /* Previous button inside month header */
       .month .prev {
-          float: left;
-          padding-top: 10px;
+        float: left;
+        padding-top: 10px;
       }
 
       /* Next button */
       .month .next {
-          float: right;
-          padding-top: 10px;
+        float: right;
+        padding-top: 10px;
       }
 
       /* Weekdays (Mon-Sun) */
       .weekdays {
-          margin: 0;
-          padding: 10px 0;
-          background-color:#ddd;
+        margin: 0;
+        padding: 10px 0;
+        background-color:#ddd;
       }
 
       .weekdays li {
-          display: inline-block;
-          width: 13.6%;
-          color: #666;
-          text-align: center;
+        display: inline-block;
+        width: 13.3%;
+        color: #666;
+        text-align: center;
+      }
+
+
+      .weekdays .holiday {
+        color: #ff5700;
       }
 
       /* Days (1-31) */
       .days {
-          padding: 10px 0;
-          background: #eee;
-          margin: 0;
+        padding: 10px 0;
+        background: #eee;
+        margin: 0;
       }
 
       .days li {
-          list-style-type: none;
-          display: inline-block;
-          width: 13.6%;
-          text-align: center;
-          margin-bottom: 5px;
-          font-size:12px;
-          color:#777;
+        list-style-type: none;
+        display: inline-block;
+        width: 13.3%;
+        text-align: center;
+        margin-bottom: 5px;
+        font-size:12px;
+        color:#777;
+      }
+
+      .days li:nth-child(7n + 1),
+      .days li:nth-child(7n) {
+        color: #ff5700;
       }
 
       /* Highlight the "current" day */
@@ -108,7 +124,7 @@
       var solMonth = solDay.toDateString('MMMM');
       var solDate = solDay.toDateString('D');
   </script>
-    
+
   <h2>SOL CALENDAR - Today</h2>
 
   <div class="calendar">
@@ -124,16 +140,17 @@
     </div>
 
     <ul class="weekdays">
-      <li>Mo</li>
-      <li>Tu</li>
-      <li>We</li>
-      <li>Th</li>
-      <li>Fr</li>
-      <li>Sa</li>
-      <li>Su</li>
+      <li class="holiday">Sun</li>
+      <li>Mon</li>
+      <li>Tue</li>
+      <li>Wed</li>
+      <li>Thu</li>
+      <li>Fri</li>
+      <li class="holiday">Sat</li>
     </ul>
 
     <ul class="days">
+      <li></li>
       <li>1</li>
       <li>2</li>
       <li>3</li>
